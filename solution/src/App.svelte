@@ -4,7 +4,7 @@
   import Comment from "./lib/Comment.svelte";
   import CreateCommentForm from "./lib/CreateCommentForm.svelte";
   $: user = $data.currentUser;
-  $: comments = $data.comments;
+  $: comments = $data.comments.sort((a, b) => b.score - a.score);
 </script>
 
 <div class="min-h-screen flex flex-col p-4 gap-4 justify-center items-center bg-neutral-100">
@@ -24,9 +24,10 @@
         score={comment.score}
       />
       {#if comment.replies.length > 0}
+        {@const replies = comment.replies.sort((a, b) => b.score - a.score)}
         <div class="pl-2 sm:pl-8">
           <div class="pl-2 sm:pl-8 border-l-2 space-y-4">
-            {#each comment.replies as reply (reply.id)}
+            {#each replies as reply (reply.id)}
               <Comment
                 user={reply.user}
                 id={reply.id}

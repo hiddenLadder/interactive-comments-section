@@ -60,6 +60,7 @@ function createData() {
     comments[comments.indexOf(comment)] = comment;
     set({ ...dataJson, comments });
   }
+
   return {
     subscribe,
     editComment,
