@@ -1,6 +1,6 @@
 import { writable } from "svelte/store";
 import type { Comment } from "../index";
-import dataJson from "/data.json";
+import dataJson from "/public/data.json";
 
 function createData() {
   const { subscribe, set, update } = writable(dataJson);
